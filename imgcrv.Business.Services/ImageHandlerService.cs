@@ -10,21 +10,45 @@ namespace imgcrv.Business.Services
 {
     class ImageHandlerService
     {
+        CarvingService CarveService;
+
         public ImageHandlerService()
         {
-            
+            CarveService = new CarvingService();
+        }
+        //HTml api
+
+
+        //Cache service
+        public ImageEntity MakeImageEntity(string imageUrl)
+        {
+            //Jei bus naudojamas saugojimas ne failu sistemoje
+            MagickImage image = new MagickImage(imageUrl);
+
+            ImageEntity imageEnt = new ImageEntity(image);
+
+            imageEnt.height = image.Height;
+            imageEnt.width = image.Width;
+            return imageEnt;
         }
 
-        ImageEntity MakeImageEntity(string imageUrl)
+        public void CarveImage(ImageEntity image, int height, int width)
         {
-            return new ImageEntity(imageUrl);
+            CarveService.Carve(image, height, width);
+            SetSize(image);
         }
 
-        ImageEntity CarveImage(ImageEntity image, int height, int width)
+        public void ResetImage(ImageEntity image)
         {
-            CarvingService CarveService = new CarvingService();
-            
-            return CarveService.Carve(image, height, width);
+            image.SetMagickImage(image.GetOriginalMagickImage());
+            SetSize(image);
         }
+
+        public void SetSize(ImageEntity image)
+        {
+            image.height = image.GetMagickImage().Height;
+            image.width = image.GetMagickImage().Width;
+        }
+
     }
 }

@@ -10,61 +10,51 @@ namespace imgcrv.Data.DataEntities.Dto
 {
     public class ImageEntity
     {
-        int height { get; private set; }
-        int width { get; private set; }
+        public int height
+        {
+            get
+            {
+                return height;
+            }
+            set
+            {
+                height = value;
+            }
+        }
+        public int width
+        {
+            get
+            {
+                return width;
+            }
+            set
+            {
+                width = value;
+            }
+        }
         private MagickImage image;
-        private string imageUrl;
-
-        public ImageEntity(string imageUrl)
+        private MagickImage origImage;
+        
+        public ImageEntity(MagickImage image)
         {
-            this.image = new MagickImage(imageUrl);
-            SetSize();
+            //Do it in the service
+            //this.origImage = image;
+            SetMagickImage(image);
         }
 
-        public ImageEntity(MagickImage image, string imageUrl)
+        public MagickImage GetMagickImage()
         {
-            this.image = image;
-            SetSize();
-        }
+            return image;
+        }  
 
-        private void SetSize()
-        {
-            //exception
-            this.height = image.Height;
-            this.width = image.Width;            
-        }
-
-        MagickImage GetMagickImage()
-        {
-            if (image != null)
-                return image;
-            return null;
-            //Exception here?
-        }
-
-        void SetMagickImage(MagickImage image)
+        public void SetMagickImage(MagickImage image)
         {
             this.image = image;
         }
 
-        void SetImageUrl(string imageUrl)
+        public MagickImage GetOriginalMagickImage()
         {
-            this.imageUrl = imageUrl;
-        }
-
-        void ReadImageFromUrl()
-        {
-            this.image = new MagickImage(imageUrl);
-        }
-
-        int GetHeight()
-        {
-            return height;
-        }
-
-        int GetWidth()
-        {
-            return width;
+            return origImage;
         }
     }
 }

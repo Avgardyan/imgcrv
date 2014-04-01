@@ -11,19 +11,25 @@ namespace imgcrv.Business.Services
     class CarvingService
     {
 
-        private MagickImage image;
-
-        
         double PixelToPercent(int before, int after)
         {
             return (double)after / before;
         }
 
-        ImageEntity Carve(ImageEntity image, int height, int width)
+        public void Carve(ImageEntity image, int height, int width)
         {
-
-            return image;
+            //Sets the image entity to a rescaled version of itself
+            //Use this one to keep recarving an image
+            //(this allows to avoid reading from file every time)       
+            
+            MagickImage temp = image.GetMagickImage();
+            temp.LiquidRescale(new MagickGeometry(
+                (Percentage)PixelToPercent(image.height, height),
+                (Percentage)PixelToPercent(image.width, width)));
+            image.SetMagickImage(temp);
         }
+        
+        
         
     }
 }
