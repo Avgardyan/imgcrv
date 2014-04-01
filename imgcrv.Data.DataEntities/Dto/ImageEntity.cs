@@ -10,51 +10,61 @@ namespace imgcrv.Data.DataEntities.Dto
 {
     public class ImageEntity
     {
-        public int height
-        {
-            get
-            {
-                return height;
-            }
-            set
-            {
-                height = value;
-            }
-        }
-        public int width
-        {
-            get
-            {
-                return width;
-            }
-            set
-            {
-                width = value;
-            }
-        }
+        int height { get; private set; }
+        int width { get; private set; }
         private MagickImage image;
-        private MagickImage origImage;
-        
-        public ImageEntity(MagickImage image)
+        private string imageUrl;
+
+        public ImageEntity(string imageUrl)
         {
-            //Do it in the service
-            //this.origImage = image;
-            SetMagickImage(image);
+            this.image = new MagickImage(imageUrl);
+            SetSize();
         }
 
-        public MagickImage GetMagickImage()
+        public ImageEntity(MagickImage image, string imageUrl)
         {
-            return image;
-        }  
+            this.image = image;
+            SetSize();
+        }
 
-        public void SetMagickImage(MagickImage image)
+        private void SetSize()
+        {
+            //exception
+            this.height = image.Height;
+            this.width = image.Width;            
+        }
+
+        MagickImage GetMagickImage()
+        {
+            if (image != null)
+                return image;
+            return null;
+            //Exception here?
+        }
+
+        void SetMagickImage(MagickImage image)
         {
             this.image = image;
         }
 
-        public MagickImage GetOriginalMagickImage()
+        void SetImageUrl(string imageUrl)
         {
-            return origImage;
+            this.imageUrl = imageUrl;
+        }
+
+        void ReadImageFromUrl()
+        {
+            this.image = new MagickImage(imageUrl);
+        }
+
+        int GetHeight()
+        {
+            return height;
+        }
+
+        int GetWidth()
+        {
+            return width;
         }
     }
 }
