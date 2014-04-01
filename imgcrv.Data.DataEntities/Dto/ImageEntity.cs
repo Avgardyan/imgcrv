@@ -10,26 +10,57 @@ namespace imgcrv.Data.DataEntities.Dto
 {
     public class ImageEntity
     {
-        int height { get; private set; }
-        int width { get; private set; }
+        public int height
+        {
+            get
+            {
+                return height;
+            }
+            protected set
+            {
+                height = value;
+            }
+        }
+        public int width
+        {
+            get
+            {
+                return width;
+            }
+            protected set
+            {
+                width = value;
+            }
+        }
         private MagickImage image;
-        private string imageUrl;
+        public string imageUrl
+        {
+            get
+            {
+                return imageUrl;
+            }
+            protected set
+            {
+                imageUrl = value;
+            }
+        }
 
         public ImageEntity(string imageUrl)
         {
-            this.image = new MagickImage(imageUrl);
-            SetSize();
+            this.imageUrl = imageUrl;
+            ReadImageFromUrl();
         }
 
         public ImageEntity(MagickImage image, string imageUrl)
         {
-            this.image = image;
-            SetSize();
+            this.imageUrl = imageUrl;
+            SetMagickImage(image);
         }
 
         private void SetSize()
         {
             //exception
+            //sets ImageEntity properties to MagickImage properties
             this.height = image.Height;
             this.width = image.Width;            
         }
@@ -44,27 +75,19 @@ namespace imgcrv.Data.DataEntities.Dto
 
         void SetMagickImage(MagickImage image)
         {
-            this.image = image;
-        }
-
-        void SetImageUrl(string imageUrl)
-        {
-            this.imageUrl = imageUrl;
+            if (image != null)
+            {
+                this.image = image;
+                SetSize();
+            }
         }
 
         void ReadImageFromUrl()
         {
-            this.image = new MagickImage(imageUrl);
+            //Exception
+            image.Read(imageUrl);
+            SetSize();
         }
 
-        int GetHeight()
-        {
-            return height;
-        }
-
-        int GetWidth()
-        {
-            return width;
-        }
     }
 }
