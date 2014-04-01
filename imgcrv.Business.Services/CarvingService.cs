@@ -21,8 +21,22 @@ namespace imgcrv.Business.Services
 
         ImageEntity Carve(ImageEntity image, int height, int width)
         {
-
+            //Sets the image entity to a rescaled version of itself
+            //Use this one to keep recarving an image
+            //(this allows to avoid reading from file every time)
+            image.SetMagickImage
+                (image.GetMagickImage().
+                LiquidRescale
+                    (PixelToPercent(image.height, height),
+                     PixelToPercent(image.width, width)));
             return image;
+        }
+        
+        ImageEntity ReCarve(ImageEntity image, int height, int width)
+        {
+            //Resets the image to the original version and carves again
+            image.ReadImageFromUrl();
+            return Carve(image, height, width);
         }
         
     }
