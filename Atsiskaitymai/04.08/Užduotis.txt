@@ -1,0 +1,7 @@
+﻿Užduoties analizė.
+
+Panaudos atvejų diagrama ir aprašas.
+
+Sistemos wireframes.
+
+Paketų diagrama (UML package diagram)

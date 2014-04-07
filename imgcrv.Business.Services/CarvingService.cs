@@ -28,8 +28,5 @@ namespace imgcrv.Business.Services
                 (Percentage)PixelToPercent(image.width, width)));
             image.SetMagickImage(temp);
         }
-        
-        
-        
     }
 }

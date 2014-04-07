@@ -45,7 +45,7 @@ namespace imgcrv.Data.DataEntities.Dto
         public MagickImage GetMagickImage()
         {
             return image;
-        }  
+        }
 
         public void SetMagickImage(MagickImage image)
         {
