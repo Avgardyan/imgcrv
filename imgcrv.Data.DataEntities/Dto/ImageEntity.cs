@@ -33,12 +33,9 @@ namespace imgcrv.Data.DataEntities.Dto
             }
         }
         private MagickImage image;
-        private MagickImage origImage;
-        
+
         public ImageEntity(MagickImage image)
         {
-            //Do it in the service
-            //this.origImage = image;
             SetMagickImage(image);
         }
 
@@ -50,11 +47,6 @@ namespace imgcrv.Data.DataEntities.Dto
         public void SetMagickImage(MagickImage image)
         {
             this.image = image;
-        }
-
-        public MagickImage GetOriginalMagickImage()
-        {
-            return origImage;
         }
     }
 }

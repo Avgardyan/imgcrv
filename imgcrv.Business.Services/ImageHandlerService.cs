@@ -38,11 +38,6 @@ namespace imgcrv.Business.Services
             SetSize(image);
         }
 
-        public void ResetImage(ImageEntity image)
-        {
-            image.SetMagickImage(image.GetOriginalMagickImage());
-            SetSize(image);
-        }
 
         public void SetSize(ImageEntity image)
         {
