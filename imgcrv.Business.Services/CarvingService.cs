@@ -8,7 +8,7 @@ using imgcrv.Data.DataEntities.Dto;
 
 namespace imgcrv.Business.Services
 {
-    class CarvingService
+    public class CarvingService : imgcrv.Business.Services.ICarvingService
     {
 
         double PixelToPercent(int before, int after)

@@ -138,6 +138,12 @@
   <ItemGroup>
     <Content Include="Views\DisplayTime\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\imgcrv.Business.Services\imgcrv.Business.Services.csproj">
+      <Project>{423cc92c-ed9c-40fb-bcad-af5379cb4c26}</Project>
+      <Name>imgcrv.Business.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

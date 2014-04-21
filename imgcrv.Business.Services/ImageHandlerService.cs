@@ -8,7 +8,7 @@ using imgcrv.Data.DataEntities.Dto;
 
 namespace imgcrv.Business.Services
 {
-    class ImageHandlerService
+    public class ImageHandlerService
     {
         CarvingService CarveService;
 
@@ -20,7 +20,7 @@ namespace imgcrv.Business.Services
 
 
         //Cache service
-        public ImageEntity MakeImageEntity(string imageUrl)
+        private ImageEntity MakeImageEntity(string imageUrl)
         {
             //Jei bus naudojamas saugojimas ne failu sistemoje
             MagickImage image = new MagickImage(imageUrl);
@@ -32,10 +32,13 @@ namespace imgcrv.Business.Services
             return imageEnt;
         }
 
-        public void CarveImage(ImageEntity image, int height, int width)
+        public void CarveAndSaveImage(string imageUrl, int height, int width)
         {
+            ImageEntity image = MakeImageEntity(imageUrl);
+
             CarveService.Carve(image, height, width);
             SetSize(image);
+            image.GetMagickImage().Write(imageUrl);
         }
 
 
