@@ -16,7 +16,7 @@ namespace imgcrv.Presentation.Web.Controllers
         {
             FileHandlerService Fhandler = new FileHandlerService();
             ViewData["CurrentTime"] = DateTime.Now.ToString();
-            ViewData["Random Name"] = Fhandler.GenerateRandomName();
+            ViewData["Random Name"] = Fhandler.GetAllAttributes();
             return View();
         }
 

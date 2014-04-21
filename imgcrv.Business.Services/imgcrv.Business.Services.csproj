@@ -35,6 +35,7 @@
       <HintPath>..\packages\Magick.NET-Q16-x86.6.8.8.901\lib\net40-client\Magick.NET-x86.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />

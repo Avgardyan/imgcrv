@@ -18,15 +18,29 @@ namespace imgcrv.Presentation.Web.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            FileHandlerService Fhandler = new FileHandlerService();
+            FileHandlerService fileHandler = new FileHandlerService();
             if (file.ContentLength > 0)
             {
 
-                string fileName = Fhandler.GenerateRandomName() + Path.GetExtension(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                string fileName = fileHandler.GenerateRandomNameAddExtention(Path.GetExtension(file.FileName));
+                ViewData["imageName"] = fileName;
+
+                string path = fileHandler.GetOrigninalUploadLocation() + fileName;
                 file.SaveAs(path);
+                ViewData["originalPath"] = path;
+
+
+                path = fileHandler.GetCarvedUploadLocation() + fileName;
+                file.SaveAs(path);
+                ViewData["carvedPath"] = path;
             }
 
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult DisplayImage()
+        {
             return RedirectToAction("Index");
         }
 
