@@ -13,19 +13,21 @@ namespace imgcrv.Business.Services
 
         double PixelToPercent(int before, int after)
         {
-            return (double)after / before;
+            return (double)after / before * 100;
         }
 
         public void Carve(ImageEntity image, int height, int width)
         {
             //Sets the image entity to a rescaled version of itself
             //Use this one to keep recarving an image
-            //(this allows to avoid reading from file every time)       
+            //(this allows to avoid reading from file every time)
             
             MagickImage temp = image.GetMagickImage();
-            temp.LiquidRescale(new MagickGeometry(
-                (Percentage)PixelToPercent(image.height, height),
-                (Percentage)PixelToPercent(image.width, width)));
+
+            Percentage heightPercent = (Percentage)PixelToPercent(temp.Height, height);
+            Percentage widthPercent = (Percentage)PixelToPercent(temp.Width, width);
+
+            temp.LiquidRescale(new MagickGeometry(widthPercent, heightPercent));
             image.SetMagickImage(temp);
         }
     }

@@ -43,6 +43,10 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Magick.NET-x86, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Magick.NET-Q16-x86.6.8.8.901\lib\net40-client\Magick.NET-x86.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -188,6 +192,10 @@
       <Name>imgcrv.Business.Services</Name>
     </ProjectReference>
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <ProjectReference Include="..\imgcrv.Data.DataEntities\imgcrv.Data.DataEntities.csproj">
+      <Project>{d86eb91d-7e4e-48aa-93ce-7d3d78161fd6}</Project>
+      <Name>imgcrv.Data.DataEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />

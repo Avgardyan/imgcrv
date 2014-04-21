@@ -18,7 +18,6 @@ namespace imgcrv.Business.Services
         }
         //HTml api
 
-
         //Cache service
         private ImageEntity MakeImageEntity(string imageUrl)
         {
@@ -27,8 +26,6 @@ namespace imgcrv.Business.Services
 
             ImageEntity imageEnt = new ImageEntity(image);
 
-            imageEnt.height = image.Height;
-            imageEnt.width = image.Width;
             return imageEnt;
         }
 
@@ -37,16 +34,9 @@ namespace imgcrv.Business.Services
             ImageEntity image = MakeImageEntity(imageUrl);
 
             CarveService.Carve(image, height, width);
-            SetSize(image);
-            image.GetMagickImage().Write(imageUrl);
+            MagickImage magickImage = image.GetMagickImage();
+
+            magickImage.Write(imageUrl);
         }
-
-
-        public void SetSize(ImageEntity image)
-        {
-            image.height = image.GetMagickImage().Height;
-            image.width = image.GetMagickImage().Width;
-        }
-
     }
 }

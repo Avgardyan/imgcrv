@@ -16,8 +16,8 @@ namespace imgcrv.Business.Services
         private string symbols = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789";
         private int symbolsLength = 60;
         private int nameLength = 6;
-        private string originalUploadDir = @"D:\imgcrvImages\Original";
-        private string carvedUploadDir = @"D:\imgcrvImages\Carved";
+        private string originalUploadDir = @"D:\imgcrvImages2\Original";
+        private string carvedUploadDir = @"D:\imgcrvImages2\Carved";
         string attributeTestString = "";
 
         //Function to get random number

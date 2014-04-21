@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using imgcrv.Business.Services;
 using System.IO;
+using imgcrv.Data.DataEntities.Dto;
 
 namespace imgcrv.Presentation.Web.Controllers
 {
@@ -18,6 +19,7 @@ namespace imgcrv.Presentation.Web.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
+            
             FileHandlerService fileHandler = new FileHandlerService();
             if (file.ContentLength > 0)
             {
@@ -29,9 +31,26 @@ namespace imgcrv.Presentation.Web.Controllers
                 file.SaveAs(path);
                 ViewData["originalPath"] = path;
 
+                
+                /*
+                ImageMagick.MagickImage image = new ImageMagick.MagickImage(path);
 
+                ImageMagick.Percentage wp = 80, hp = 100;
+                ImageMagick.MagickGeometry geom = new ImageMagick.MagickGeometry(wp, hp);
+                image.LiquidRescale(geom);
+                image.Write(path);
+                */
+                
                 path = fileHandler.GetCarvedUploadLocation() + fileName;
+
+                ImageHandlerService imageHandler = new ImageHandlerService();
                 file.SaveAs(path);
+                int width;
+                int.TryParse(Request["width"].ToString(), out width);
+                int height;
+                int.TryParse(Request["height"].ToString(), out height);
+
+                imageHandler.CarveAndSaveImage(path, height, width);
                 ViewData["carvedPath"] = path;
             }
 
