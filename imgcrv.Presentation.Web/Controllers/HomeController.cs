@@ -19,8 +19,8 @@ namespace imgcrv.Presentation.Web.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            
-            FileHandlerService fileHandler = new FileHandlerService();
+
+            FileHandlerService fileHandler = new FileHandlerService(Server.MapPath("~/App_Data/"));
             if (file.ContentLength > 0)
             {
 

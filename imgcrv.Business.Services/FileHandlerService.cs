@@ -16,8 +16,8 @@ namespace imgcrv.Business.Services
         private string symbols = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789";
         private int symbolsLength = 60;
         private int nameLength = 6;
-        private string originalUploadDir = @"D:\imgcrvImages2\Original";
-        private string carvedUploadDir = @"D:\imgcrvImages2\Carved";
+        private string originalUploadDir = @"~\imgcrvImages\Original\";
+        private string carvedUploadDir = @"~\imgcrvImages\Carved\";
         string attributeTestString = "";
 
         //Function to get random number
@@ -31,12 +31,12 @@ namespace imgcrv.Business.Services
             }
         }
 
-        public FileHandlerService()
+        public FileHandlerService(string ServerPath)
         {
-            SetSettings();
+            SetSettings(ServerPath);
         }
 
-        private void SetSettings()
+        private void SetSettings(string ServerPath)
         {
             string attribute;
 
@@ -53,22 +53,33 @@ namespace imgcrv.Business.Services
             {
                 nameLength = tempLength;
             }
-
+            string CombinedPath;
             attribute = ConfigurationManager.AppSettings.Get("OriginalImageSaveLocation");
             if (attribute != "")
             {
-                if (Directory.Exists(attribute))
+                CombinedPath = Path.Combine(ServerPath, attribute);
+                if (Directory.Exists(CombinedPath))
                 {
-                    originalUploadDir = attribute;
+                    originalUploadDir = CombinedPath;
+                }
+                else
+                {
+                    throw new Exception("Original image directory defined in config is either wrong or doesn't exist");
                 }
             }
 
             attribute = ConfigurationManager.AppSettings.Get("CarvedImageSaveLocation");
             if (attribute != "")
             {
-                if (Directory.Exists(attribute))
+                CombinedPath = Path.Combine(ServerPath, attribute);
+                if (Directory.Exists(CombinedPath))
                 {
-                    carvedUploadDir = attribute;
+
+                    carvedUploadDir = CombinedPath;
+                }
+                else
+                {
+                    throw new Exception("Carved image directory defined in config is either wrong or doesn't exist");
                 }
             }
 
@@ -83,6 +94,7 @@ namespace imgcrv.Business.Services
         {
             int i = 0;
             string name;
+            string fullPath;
             do
             {
                 name = "";
@@ -90,8 +102,9 @@ namespace imgcrv.Business.Services
                 {
                     name += symbols[GetRandomNumber(0, symbolsLength)];
                 }
+                fullPath = Path.Combine(originalUploadDir, name + extention);
             }
-            while (FileExists(name + extention));
+            while (FileExists(fullPath));
             return name + extention;
         }
 

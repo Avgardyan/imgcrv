@@ -1,0 +1,4 @@
+Make event types of enumerable type (int)
+Add key in appConfig 'saveInServerPath' = true or false
+Properly check if directory exists, if not, save in server path and create folder there if necessary
+Add actual db
