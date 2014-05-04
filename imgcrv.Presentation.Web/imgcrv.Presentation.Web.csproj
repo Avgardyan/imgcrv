@@ -179,6 +179,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405041616055_Image.cs" />
+    <Compile Include="Migrations\201405041616055_Image.Designer.cs">
+      <DependentUpon>201405041616055_Image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -255,6 +260,11 @@
       <Project>{d86eb91d-7e4e-48aa-93ce-7d3d78161fd6}</Project>
       <Name>imgcrv.Data.DataEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405041616055_Image.resx">
+      <DependentUpon>201405041616055_Image.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
