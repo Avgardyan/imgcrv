@@ -31,7 +31,7 @@ namespace imgcrv.Presentation.Web.Controllers
                 file.SaveAs(path);
                 ViewData["originalPath"] = path;
 
-                
+
                 /*
                 ImageMagick.MagickImage image = new ImageMagick.MagickImage(path);
 
@@ -40,7 +40,7 @@ namespace imgcrv.Presentation.Web.Controllers
                 image.LiquidRescale(geom);
                 image.Write(path);
                 */
-                
+
                 path = fileHandler.GetCarvedUploadLocation() + fileName;
 
                 ImageHandlerService imageHandler = new ImageHandlerService();

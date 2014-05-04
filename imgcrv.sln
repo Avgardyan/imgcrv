@@ -15,13 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Business.Services", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Data.DataEntities", "imgcrv.Data.DataEntities\imgcrv.Data.DataEntities.csproj", "{D86EB91D-7E4E-48AA-93CE-7D3D78161FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Presentation.Web", "imgcrv.Presentation.Web\imgcrv.Presentation.Web.csproj", "{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Business.ServiceContracts", "imgcrv.Business.ServiceContracts\imgcrv.Business.ServiceContracts.csproj", "{91926F20-7EBB-43D9-9C47-2ED1D38B7122}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Data.Data", "imgcrv.Data.Data\imgcrv.Data.Data.csproj", "{0933A1E2-699B-4354-9167-2B31B1E57F1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Data.DataContracts", "imgcrv.Data.DataContracts\imgcrv.Data.DataContracts.csproj", "{9483BCAF-B17C-4560-9A07-06B05857DCD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imgcrv.Presentation.Web", "imgcrv.Presentation.Web\imgcrv.Presentation.Web.csproj", "{73431351-4362-4E9B-8273-BAD2806A2887}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,16 +55,6 @@ Global
 		{D86EB91D-7E4E-48AA-93CE-7D3D78161FD6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D86EB91D-7E4E-48AA-93CE-7D3D78161FD6}.Release|x86.ActiveCfg = Release|x86
 		{D86EB91D-7E4E-48AA-93CE-7D3D78161FD6}.Release|x86.Build.0 = Release|x86
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB}.Release|x86.ActiveCfg = Release|Any CPU
 		{91926F20-7EBB-43D9-9C47-2ED1D38B7122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{91926F20-7EBB-43D9-9C47-2ED1D38B7122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91926F20-7EBB-43D9-9C47-2ED1D38B7122}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -95,6 +85,16 @@ Global
 		{9483BCAF-B17C-4560-9A07-06B05857DCD0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9483BCAF-B17C-4560-9A07-06B05857DCD0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9483BCAF-B17C-4560-9A07-06B05857DCD0}.Release|x86.ActiveCfg = Release|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{73431351-4362-4E9B-8273-BAD2806A2887}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,7 +105,7 @@ Global
 		{1CE1343E-5A84-4149-9084-DE6222594CBF} = {0CAD04E0-B656-4A9F-A106-94037E99D1E9}
 		{423CC92C-ED9C-40FB-BCAD-AF5379CB4C26} = {3C2824FF-902C-4878-9C40-184C88511CED}
 		{91926F20-7EBB-43D9-9C47-2ED1D38B7122} = {3C2824FF-902C-4878-9C40-184C88511CED}
-		{EF0AC7D3-0BA8-434F-A69A-2D8CF9D1D2FB} = {3FDA12C1-3478-4936-916B-3CE76BE20EE0}
+		{73431351-4362-4E9B-8273-BAD2806A2887} = {3FDA12C1-3478-4936-916B-3CE76BE20EE0}
 		{D86EB91D-7E4E-48AA-93CE-7D3D78161FD6} = {1CE1343E-5A84-4149-9084-DE6222594CBF}
 		{0933A1E2-699B-4354-9167-2B31B1E57F1F} = {1CE1343E-5A84-4149-9084-DE6222594CBF}
 		{9483BCAF-B17C-4560-9A07-06B05857DCD0} = {1CE1343E-5A84-4149-9084-DE6222594CBF}
