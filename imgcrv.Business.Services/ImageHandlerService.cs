@@ -46,5 +46,14 @@ namespace imgcrv.Business.Services
 
             magickImage.Write(imageUrl);
         }
+
+        public void ResetCarvedToOriginal(string originalUrl, string carvedUrl)
+        {
+            ImageEntity image = MakeImageEntity(originalUrl);
+
+            MagickImage magickImage = image.GetMagickImage();
+
+            magickImage.Write(carvedUrl);
+        }
     }
 }
