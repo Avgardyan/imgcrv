@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using System.IO;
 using System.Collections;
+using System.Reflection;
 
 namespace imgcrv.Business.Services
 {
@@ -58,29 +59,31 @@ namespace imgcrv.Business.Services
             if (attribute != "")
             {
                 CombinedPath = Path.Combine(ServerPath, attribute);
-                if (Directory.Exists(CombinedPath))
-                {
-                    originalUploadDir = CombinedPath;
-                }
-                else
-                {
-                    throw new Exception("Original image directory defined in config is either wrong or doesn't exist");
-                }
+                originalUploadDir = CombinedPath;
+                //if (Directory.Exists(CombinedPath))
+                //{
+                //    originalUploadDir = CombinedPath;
+                //}
+                //else
+                //{
+                //    throw new Exception("Original image directory defined in config is either wrong or doesn't exist");
+                //}
             }
 
             attribute = ConfigurationManager.AppSettings.Get("CarvedImageSaveLocation");
             if (attribute != "")
             {
                 CombinedPath = Path.Combine(ServerPath, attribute);
-                if (Directory.Exists(CombinedPath))
-                {
+                carvedUploadDir = CombinedPath;
+                //if (Directory.Exists(CombinedPath))
+                //{
 
-                    carvedUploadDir = CombinedPath;
-                }
-                else
-                {
-                    throw new Exception("Carved image directory defined in config is either wrong or doesn't exist");
-                }
+                //    carvedUploadDir = CombinedPath;
+                //}
+                //else
+                //{
+                //    throw new Exception("Carved image directory defined in config is either wrong or doesn't exist");
+                //}
             }
 
             NameValueCollection sAll ;

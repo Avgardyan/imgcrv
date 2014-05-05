@@ -29,6 +29,14 @@ namespace imgcrv.Business.Services
             return imageEnt;
         }
 
+        public Tuple<int, int> ReturnSize(string imageUrl)
+        {
+            ImageEntity image = MakeImageEntity(imageUrl);
+            MagickImage magickImage = image.GetMagickImage();
+
+            return Tuple.Create(magickImage.Height, magickImage.Width);
+        }
+
         public void CarveAndSaveImage(string imageUrl, int height, int width)
         {
             ImageEntity image = MakeImageEntity(imageUrl);

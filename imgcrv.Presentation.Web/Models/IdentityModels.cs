@@ -26,5 +26,7 @@ namespace imgcrv.Presentation.Web.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<imgcrv.Presentation.Web.Models.Image> Images { get; set; }
     }
 }

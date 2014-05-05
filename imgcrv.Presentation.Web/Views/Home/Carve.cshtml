@@ -1,0 +1,23 @@
+﻿@model imgcrv.Presentation.Web.Models.CarveViewModel
+
+@{
+    ViewBag.Title = "Carve";
+}
+
+
+<div class="row">
+    <div class="col-md-8">
+        <img src="@Url.Content(Model.displayPath)" width="100" height="100" alt="Image" />
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm()) 
+        {
+            @Html.ValidationSummary(true)
+            @Html.Label("Height")
+            @Html.TextBoxFor(m => m.imageHeight)
+            @Html.Label("Width")
+            @Html.TextBoxFor(m => m.imageWidth)
+            <input type="submit" value="Carve"/>
+        }
+    </div>
+</div>

@@ -13,7 +13,7 @@ namespace imgcrv.Business.Services
 
         double PixelToPercent(int before, int after)
         {
-            return (double)after / before * 100;
+            return (double)after / (double)before * 100;
         }
 
         public void Carve(ImageEntity image, int height, int width)
