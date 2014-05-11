@@ -10,65 +10,104 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using imgcrv.Presentation.Web.Models;
+using System.Net;
 
 namespace imgcrv.Presentation.Web.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> manager;
+        private FileHandlerService fileHandler;
+        ImageHandlerService imageHandler;
+        public HomeController() 
+        {
+            db = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            fileHandler = new FileHandlerService("~\\Content\\");
+            imageHandler = new ImageHandlerService();
+        }
+
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file, string submitButton)
+        public ActionResult Upload(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
             {
-                FileHandlerService fileHandler = new FileHandlerService("~\\Content\\");
-                var model = new CarveViewModel();
-                model.imageName = fileHandler.GenerateRandomNameAddExtention(Path.GetExtension(file.FileName));
-                model.originalPath = fileHandler.GetOrigninalUploadLocation() + model.imageName;
-                file.SaveAs(Server.MapPath(model.originalPath));
-                model.carvedPath = fileHandler.GetCarvedUploadLocation() + model.imageName;
-                file.SaveAs(Server.MapPath(model.carvedPath));
-                model.displayPath = fileHandler.GetCarvedUploadLocation() + model.imageName;
-                
-                return RedirectToAction("Carve", model);
+                Image image = new Image();
+                string name;
+                name = fileHandler.GenerateRandomNameAddExtention(Path.GetExtension(file.FileName));
+                image.originalPath = fileHandler.GetOrigninalUploadLocation() + name;
+                file.SaveAs(Server.MapPath(image.originalPath));
+                image.carvedPath = fileHandler.GetCarvedUploadLocation() + name;
+                file.SaveAs(Server.MapPath(image.carvedPath));
+                image.UploadedAt = DateTime.Now;
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                image.User = currentUser;
+                db.Images.Add(image);
+                db.SaveChanges();
+                return RedirectToAction("Display","Home", new { id = image.Id });
             }
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult Carve(CarveViewModel model, string submitButton)
+        public ActionResult Display(int? id)
         {
-            if (submitButton == "Carve")
+            if (id == null)
             {
-                ImageHandlerService imageHandler = new ImageHandlerService();
-                imageHandler.CarveAndSaveImage(model.carvedPath, model.imageHeight, model.imageWidth);
-                
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else if (submitButton == "Reset")
+            Image image = db.Images.Find(id);
+            if (image == null)
             {
-                ImageHandlerService imageHandler = new ImageHandlerService();
-                imageHandler.ResetCarvedToOriginal(model.originalPath, model.carvedPath);
-                
-                submitButton = null;
+                return HttpNotFound();
             }
-
-            //Method goes here if photo has just been uploaded or reset
-            if (submitButton == null)
-            {
-                ImageHandlerService imageHandler = new ImageHandlerService();
-                Tuple<int, int> size = imageHandler.ReturnSize(Server.MapPath(model.carvedPath));
-                model.imageHeight = size.Item1;
-                model.imageWidth = size.Item2;
-            }
-            
+            Tuple<int, int> size = imageHandler.ReturnSize(Server.MapPath(image.carvedPath));
+            var model =  new CarveViewModel();
+            model.Id = image.Id;
+            model.imageHeight = size.Item1;
+            model.imageWidth = size.Item2;
+            model.displayPath = image.carvedPath;
             return View(model);
         }
 
-        
+        [HttpPost]
+        public ActionResult Carve(CarveViewModel model)
+        {
+            if (model.Id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Image image = db.Images.Find(model.Id);
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+            imageHandler.CarveAndSaveImage(Server.MapPath(image.carvedPath), model.imageHeight, model.imageWidth);
+            return RedirectToAction("Display", "Home", new { id = model.Id });
+        }
+
+        public ActionResult Reset(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Image image = db.Images.Find(id);
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+            imageHandler.ResetCarvedToOriginal(image.originalPath, image.carvedPath);
+            return RedirectToAction("Display", "Home", new { id = image.Id });
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

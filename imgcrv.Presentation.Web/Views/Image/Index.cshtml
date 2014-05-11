@@ -1,0 +1,33 @@
+﻿@model IEnumerable<imgcrv.Presentation.Web.Models.Image>
+
+@{
+    ViewBag.Title = "Mano paveikslėliai";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Paveiksliukai")
+        </th>
+        <th>
+            @Html.Label("Įkelta")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img style="max-width: 100%; height: auto;" src="@Url.Content(item.originalPath)" alt="Image" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadedAt)
+        </td>
+        <td>
+           @Html.ActionLink("Atsisiųsti", "Download", new { fileName = item.originalPath })
+            @Html.ActionLink("Redaguoti", "Display", "Home", new { id = item.Id }, null)
+            @Html.ActionLink("Ištrinti", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

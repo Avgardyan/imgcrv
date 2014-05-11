@@ -7,13 +7,13 @@ namespace imgcrv.Presentation.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Image : IMigrationMetadata
+    public sealed partial class crvPth : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Image));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(crvPth));
         
         string IMigrationMetadata.Id
         {
-            get { return "201405041616055_Image"; }
+            get { return "201405111346269_crvPth"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,0 +1,28 @@
+﻿@model imgcrv.Presentation.Web.Models.CarveViewModel
+
+@{
+    ViewBag.Title = "Carver";
+}
+
+
+<div class="row">
+    <div class="col-md-8">
+        <img style="max-width: 100%; height: auto;" src="@Url.Content(Model.displayPath)" alt="Image" />
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("Carve", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.Label("Aukštis", new { @class = "col-md-3 control-label" })
+            @Html.TextBoxFor(m => m.imageHeight, new { @class = "form-control" })
+            <br />
+            @Html.Label("Plotis", new { @class = "col-md-3 control-label" })
+            @Html.TextBoxFor(m => m.imageWidth, new { @class = "form-control" })
+            <br />
+            <div>
+                <input type="submit" name="submitButton" class="btn btn-default" value="Keisti dydį" />
+                <input type="button" value="Atstatyti" class="btn btn-default" onclick="location.href='@Url.Action( "Reset", "Home", new { id = Model.Id } )'" />
+            </div>
+        }
+    </div>
+</div>

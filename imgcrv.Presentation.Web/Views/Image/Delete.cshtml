@@ -1,0 +1,38 @@
+﻿@model imgcrv.Presentation.Web.Models.Image
+
+@{
+    ViewBag.Title = "Ištrinti";
+}
+
+<h2>Ištrynimas</h2>
+
+<h3>Ar tikrai norite ištrinti ši paveiksliuką?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Paveiksliukas")
+        </dt>
+
+        <dd>
+            <img style="max-width: 100%; height: auto;" src="@Url.Content(Model.originalPath)" alt="Image" />
+        </dd>
+
+        <dt>
+            @Html.Label("Įkelta")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadedAt)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Ištrinti" class="btn btn-default" /> |
+            @Html.ActionLink("Atgal į sąrašą", "Index")
+        </div>
+    }
+</div>

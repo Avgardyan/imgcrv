@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Collections;
 using System.Reflection;
+using System.Web;
 
 namespace imgcrv.Business.Services
 {
@@ -60,14 +61,21 @@ namespace imgcrv.Business.Services
             {
                 CombinedPath = Path.Combine(ServerPath, attribute);
                 originalUploadDir = CombinedPath;
-                //if (Directory.Exists(CombinedPath))
-                //{
-                //    originalUploadDir = CombinedPath;
-                //}
-                //else
-                //{
-                //    throw new Exception("Original image directory defined in config is either wrong or doesn't exist");
-                //}
+                if (Directory.Exists(HttpContext.Current.Request.MapPath(CombinedPath)))
+                {
+                    originalUploadDir = CombinedPath;
+                }
+                else
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(HttpContext.Current.Request.MapPath(CombinedPath));
+                    }
+                    catch (Exception ex)
+                    { 
+                        throw new Exception("Original image directory defined in config is wrong");
+                    }
+                }
             }
 
             attribute = ConfigurationManager.AppSettings.Get("CarvedImageSaveLocation");
@@ -75,18 +83,25 @@ namespace imgcrv.Business.Services
             {
                 CombinedPath = Path.Combine(ServerPath, attribute);
                 carvedUploadDir = CombinedPath;
-                //if (Directory.Exists(CombinedPath))
-                //{
+                if (Directory.Exists(HttpContext.Current.Request.MapPath(CombinedPath)))
+                {
 
-                //    carvedUploadDir = CombinedPath;
-                //}
-                //else
-                //{
-                //    throw new Exception("Carved image directory defined in config is either wrong or doesn't exist");
-                //}
+                    carvedUploadDir = CombinedPath;
+                }
+                else
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(HttpContext.Current.Request.MapPath(CombinedPath));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Carved image directory defined in config is wrong");
+                    }
+                }
             }
 
-            NameValueCollection sAll ;
+            NameValueCollection sAll;
             sAll = ConfigurationManager.AppSettings;
 
             foreach (string s in sAll.AllKeys)

@@ -53,7 +53,7 @@ namespace imgcrv.Presentation.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Neteisingas vartotojo vardas arba slaptažodis.");
                 }
             }
 
@@ -119,10 +119,10 @@ namespace imgcrv.Presentation.Web.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.ChangePasswordSuccess ? "Jūsų slaptažodis pakeistas."
+                : message == ManageMessageId.SetPasswordSuccess ? "Jūsų slaptažodis nustatytas."
+                : message == ManageMessageId.RemoveLoginSuccess ? "Išorinis prisijungimas pašalintas."
+                : message == ManageMessageId.Error ? "Įvyko klaida."
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");

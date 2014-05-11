@@ -14,7 +14,8 @@ namespace imgcrv.Presentation.Web.Models
     public class Image
     {
         public int Id { get; set; }
-        public string Path { get; set; }
+        public string originalPath { get; set; }
+        public string carvedPath { get; set; }
         public DateTime UploadedAt { get; set; }
 
         public virtual ApplicationUser User { get; set; }
