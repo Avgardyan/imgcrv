@@ -18,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Įkelta")
+            @Html.Label("Įkėlimo data")
         </dt>
 
         <dd>
@@ -31,8 +31,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Ištrinti" class="btn btn-default" /> |
-            @Html.ActionLink("Atgal į sąrašą", "Index")
+            <input type="submit" value="Ištrinti" title="Ištrinti paveikslėlį" class="btn btn-default" />
+
+            <input type="button" value="Grįžti" title="Grįžti į paveikslėlių sarašą" class="btn btn-default"
+                   onclick="location.href='/Image'" />
+            
         </div>
     }
 </div>

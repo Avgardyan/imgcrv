@@ -4,6 +4,16 @@
     ViewBag.Title = "Carver";
 }
 
+<h4>Raižyti paveikslėlį</h4>
+<hr />
+
+@Html.Label("Dabartinis aukštis:", new { @class = "control-label" })
+@Html.DisplayFor(m => m.imageHeight)
+@Html.Label("Dabartinis plotis:", new { @class = "control-label" })
+@Html.DisplayFor(m => m.imageWidth)
+<br /><br />
+
+
 
 <div class="row">
     <div class="col-md-8">
@@ -13,15 +23,21 @@
         @using (Html.BeginForm("Carve", "Home", FormMethod.Post))
         {
             @Html.HiddenFor(m => m.Id)
-            @Html.Label("Aukštis", new { @class = "col-md-3 control-label" })
+            @Html.Label("Naujas aukštis:", new { @class = "control-label" })            
+            <br />
             @Html.TextBoxFor(m => m.imageHeight, new { @class = "form-control" })
             <br />
-            @Html.Label("Plotis", new { @class = "col-md-3 control-label" })
+            @Html.Label("Naujas plotis:", new { @class = "control-label" })
             @Html.TextBoxFor(m => m.imageWidth, new { @class = "form-control" })
             <br />
             <div>
-                <input type="submit" name="submitButton" class="btn btn-default" value="Keisti dydį" />
-                <input type="button" value="Atstatyti" class="btn btn-default" onclick="location.href='@Url.Action( "Reset", "Home", new { id = Model.Id } )'" />
+                <input type="submit" name="submitButton" title="Raižyti paveikslėlį į nustatytą dydį" class="btn btn-default form-control" value="Keisti dydį" />
+                <input type="button" value="Atstatyti į orig." title="Atstatyti paveikslėlį į originalų dydį" class="btn btn-default form-control"
+                       onclick="location.href='@Url.Action( "Reset", "Home", new { id = Model.Id } )'" />
+                <input type="button" title="Atsisiųsti paveikslėlį" value="Atsisiųsti" class="btn btn-default form-control"
+                       onclick="location.href='@Url.Action("Download", "Image", new { id = Model.Id})'" />
+                <input type="button" title="Ištrinti paveikslėlį" value="Ištrinti" class="btn btn-default form-control"
+                       onclick="location.href='@Url.Action("Delete","Image", new {id = Model.Id })'"/>
             </div>
         }
     </div>

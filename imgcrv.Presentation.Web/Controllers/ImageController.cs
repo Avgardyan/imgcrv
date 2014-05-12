@@ -27,19 +27,33 @@ namespace imgcrv.Presentation.Web.Controllers
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
             if (currentUser == null) return View(db.Images.ToList().Where((image => image.User == null)));
+            
+
+
             return View(db.Images.ToList().Where((image => image.User.Id == currentUser.Id)));
         }
 
-        public ActionResult Download(string fileName)
+        public ActionResult Download(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Image image = db.Images.Find(id);
+
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+
             try
             {
-                var fs = System.IO.File.OpenRead(Server.MapPath(fileName));
-                return File(fs, "application/zip", Path.GetFileName(fileName));
+                var fs = System.IO.File.OpenRead(Server.MapPath(image.carvedPath));
+                return File(fs, "image/jpg", Path.GetFileName(image.carvedPath));
             }
             catch
             {
-                throw new HttpException(404, "Couldn't find " + Path.GetFileName(fileName));
+                throw new HttpException(404, "Couldn't find " + Path.GetFileName(image.carvedPath));
             }
         }
 
@@ -51,6 +65,7 @@ namespace imgcrv.Presentation.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Image image = db.Images.Find(id);
+            
             if (image == null)
             {
                 return HttpNotFound();
@@ -64,6 +79,10 @@ namespace imgcrv.Presentation.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Image image = db.Images.Find(id);
+
+            System.IO.File.Delete(Server.MapPath(image.originalPath));
+            System.IO.File.Delete(Server.MapPath(image.carvedPath));
+
             db.Images.Remove(image);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -6,6 +6,6 @@
 <hr />
 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <input type='file' name='file' id='file' />
-    <input type="submit" name="submitButton" value="Įkelti" />
+    <input type='file' name='file' id='file' class="btn btn-default" />
+    <input type="submit" name="submitButton" value="Įkelti paveikslėlį" class="btn btn-default"/>
 }
