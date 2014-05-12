@@ -1,19 +1,11 @@
 ﻿@model imgcrv.Presentation.Web.Models.CarveViewModel
 
 @{
-    ViewBag.Title = "Carver";
+    ViewBag.Title = "Paveikslėlio raižymas";
 }
 
 <h4>Raižyti paveikslėlį</h4>
 <hr />
-
-@Html.Label("Dabartinis aukštis:", new { @class = "control-label" })
-@Html.DisplayFor(m => m.imageHeight)
-@Html.Label("Dabartinis plotis:", new { @class = "control-label" })
-@Html.DisplayFor(m => m.imageWidth)
-<br /><br />
-
-
 
 <div class="row">
     <div class="col-md-8">
@@ -25,10 +17,10 @@
             @Html.HiddenFor(m => m.Id)
             @Html.Label("Naujas aukštis:", new { @class = "control-label" })            
             <br />
-            @Html.TextBoxFor(m => m.imageHeight, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.imageHeight, new { @class = "form-control", @Title = "Dabartinis aukštis: " + Model.imageHeight })
             <br />
             @Html.Label("Naujas plotis:", new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.imageWidth, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.imageWidth, new { @class = "form-control", @Title = "Dabartinis plotis: " + Model.imageWidth })
             <br />
             <div>
                 <input type="submit" name="submitButton" title="Raižyti paveikslėlį į nustatytą dydį" class="btn btn-default form-control" value="Keisti dydį" />
