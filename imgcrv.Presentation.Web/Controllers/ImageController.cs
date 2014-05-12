@@ -30,7 +30,7 @@ namespace imgcrv.Presentation.Web.Controllers
             
 
 
-            return View(db.Images.ToList().Where((image => image.User.Id == currentUser.Id)));
+            return View(db.Images.ToList().Where((image => image.User == currentUser)));
         }
 
         public ActionResult Download(int? id)
