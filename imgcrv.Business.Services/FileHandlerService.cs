@@ -9,10 +9,11 @@ using System.IO;
 using System.Collections;
 using System.Reflection;
 using System.Web;
+using imgcrv.Business.ServiceContracts;
 
 namespace imgcrv.Business.Services
 {
-    public class FileHandlerService
+    public class FileHandlerService : imgcrv.Business.ServiceContracts.IFileHandlerService
     {
         //Add error checks to see if config file is OK
         private string symbols = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789";

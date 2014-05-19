@@ -1,5 +1,5 @@
 ﻿using System;
-namespace imgcrv.Business.Services
+namespace imgcrv.Business.ServiceContracts
 {
     public interface ICarvingService
     {

@@ -34,6 +34,11 @@ namespace imgcrv.Presentation.Web.Controllers
             return View();
         }
 
+        public ActionResult EventLog()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file)
         {

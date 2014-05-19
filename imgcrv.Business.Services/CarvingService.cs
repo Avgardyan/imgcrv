@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageMagick;
 using imgcrv.Data.DataEntities.Dto;
+using imgcrv.Business.ServiceContracts;
 
 namespace imgcrv.Business.Services
 {
-    public class CarvingService : imgcrv.Business.Services.ICarvingService
+    public class CarvingService : imgcrv.Business.ServiceContracts.ICarvingService
     {
 
         public void Carve(ImageEntity image, int height, int width)

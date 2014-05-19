@@ -246,6 +246,7 @@
     <Content Include="Views\Home\Display.cshtml" />
     <Content Include="Views\Image\Delete.cshtml" />
     <Content Include="Views\Image\Index.cshtml" />
+    <Content Include="Views\Home\EventLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +256,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\imgcrv.Business.ServiceContracts\imgcrv.Business.ServiceContracts.csproj">
+      <Project>{91926f20-7ebb-43d9-9c47-2ed1d38b7122}</Project>
+      <Name>imgcrv.Business.ServiceContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\imgcrv.Business.Services\imgcrv.Business.Services.csproj">
       <Project>{423cc92c-ed9c-40fb-bcad-af5379cb4c26}</Project>
       <Name>imgcrv.Business.Services</Name>
